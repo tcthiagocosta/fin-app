@@ -1,0 +1,75 @@
+<h1 class="mt-4">FaturaCartao</h1>
+<div class="container">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Consulta</li>
+    </ol>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso" >
+                {{ mensagemSucesso }}
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="mensagemErro" >
+                {{ mensagemErro }}
+             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <button class="btn btn-warning" (click)="novoCadastro()">
+                <i class="fa fa-plus"></i> Novo
+            </button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-condensed table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cartão</th>
+                        <th>Mês/Ano</th>
+                        <th>Paga</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let faturaCartao of cartoes">
+                        <td>{{ faturaCartao.id }}</td>
+                        <td>{{ faturaCartao.cartao.nome }}</td>
+                        <td>{{ faturaCartao.mes }}/{{ faturaCartao.ano }}</td>
+                        <td>{{ faturaCartao.pago ? 'SIM' : 'NAO' }}</td>
+                        <td>
+                            <button class="btn btn-primary" routerLink="/faturaCartao/form/{{ faturaCartao.id }}">
+                                <i class="fa fa-edit"></i>
+                            </button>
+
+                            <button class="btn btn-danger ml-1" (click)="preparaDelecao(faturaCartao)"  data-toggle="modal" data-target="#modalDelecao">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="modalDelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirmação</h4>
+                </div>
+                <div class="modal-body" *ngIf="faturaCartaoSelecionado">
+                   Confirma deleção do faturaCartao: {{ faturaCartaoSelecionado.login }} ?
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-success" data-dismiss="modal" (click)="deletarFaturaCartao()">Confirmar</button>
+                    <button class="btn-danger" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

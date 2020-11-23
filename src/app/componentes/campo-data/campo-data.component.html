@@ -1,0 +1,14 @@
+<p-calendar 
+    [(ngModel)]="data" 
+    dateFormat="dd/mm/yy" 
+    dataType="string"
+    [monthNavigator]="true" 
+    [locale]="pt" 
+    [yearNavigator]="true" 
+    yearRange="2000:2030" 
+    inputId="navigators"
+    (ngModelChange)="alterarValor()"
+    [style]="{'width':'100%'}"
+    [disabled]="desabilita"
+    >
+</p-calendar>

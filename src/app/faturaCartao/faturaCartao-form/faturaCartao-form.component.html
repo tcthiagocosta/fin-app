@@ -1,0 +1,100 @@
+<h1 class="mt-4">Fatura Cartão</h1>
+<div class="container">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">{{faturaCartao.id ? 'Alteração':'Novo Cadastro'}}</li>
+    </ol>
+    <form #faturaCartaoForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Salvo com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{erro.defaultMessage}}
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="faturaCartao.id">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" class="form-control" disabled=true [ngModel]="faturaCartao.id" name="id">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Cartão: </label>
+                    <select class="form-control" [ngModelOptions]="{standalone: true}"
+                        [(ngModel)]="faturaCartao.cartao.id">
+                        <option value="">Selecione ...</option>
+                        <option *ngFor="let cartao of cartoes" [ngValue]="cartao.id">
+                            {{ cartao.nome }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>mes:</label>
+                    <select [(ngModel)]="faturaCartao.mes" [ngModelOptions]="{standalone: true}" class="form-control">
+                        <option value="">Selecione...</option>
+                        <option *ngFor="let mes of meses" [value]="mes.id">
+                            {{ mes.nome }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>ano:</label>
+                    <input type="number" class="form-control" [(ngModel)]="faturaCartao.ano" name="ano" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Fatura paga:</label>
+                    <select [(ngModel)]="faturaCartao.pago" class="form-control" name="mes">
+                        <option [value]="false" >NAO</option>
+                        <option [value]="true">SIM</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4" *ngIf="faturaCartao.dataPagamento">
+                <div class="form-group">
+                    <label>Data pagamento:</label>                    
+                    <app-campo-data [data]="faturaCartao.dataPagamento" [desabilita]="true" (dataAlterada)="dataAlterada($event)"></app-campo-data>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Descrição</label>                                        
+                    <input type="text" class="form-control" [(ngModel)]="faturaCartao.descricao" name="descricao" />
+                </div>            
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" *ngIf="!faturaCartao.id">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+                <button type="submit" class="btn btn-primary ml-1" *ngIf="faturaCartao.id">
+                    <i class="fa fa-sync-alt"></i> Atualizar Cadastro
+                </button>
+
+                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                    <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

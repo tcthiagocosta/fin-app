@@ -17,7 +17,7 @@ export class CategoriaFormComponent implements OnInit {
 
   categoria: Categoria
   success: boolean = false
-  errors: string[]
+  errors: any[]
   id: number
 
   constructor(

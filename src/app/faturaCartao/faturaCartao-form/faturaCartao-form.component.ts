@@ -17,7 +17,7 @@ export class FaturaCartaoFormComponent implements OnInit {
 
   faturaCartao: FaturaCartao
   success: boolean = false
-  errors: string[]
+  errors: any[]
   id: number
 
   cartoes : Cartao[] = []

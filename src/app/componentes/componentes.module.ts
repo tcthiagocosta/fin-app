@@ -1,20 +1,24 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import { CampoDataComponent } from './campo-data/campo-data.component';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { CampoDataComponent } from './campo-data/campo-data.component';
+import { CampoValorComponent } from './campo-valor/campo-valor.component';
 
 
 
 @NgModule({
-  declarations: [CampoDataComponent],
+  declarations: [CampoDataComponent, CampoValorComponent],
   imports: [
     CommonModule,
     FormsModule,
-    CalendarModule
+    CalendarModule,
+    InputNumberModule
   ],
   exports:[
-    CampoDataComponent
+    CampoDataComponent,
+    CampoValorComponent
   ]
 })
 export class ComponentesModule { }

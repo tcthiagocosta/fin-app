@@ -15,7 +15,7 @@ export class ContaFormComponent implements OnInit {
 
   conta: Conta
   success: boolean = false
-  errors: string[]
+  errors: any[]
   id: number
 
   constructor(

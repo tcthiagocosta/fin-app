@@ -15,7 +15,7 @@ export class CartaoFormComponent implements OnInit {
 
   cartao: Cartao
   success: boolean = false
-  errors: string[]
+  errors: any[]
   id: number
 
   constructor(

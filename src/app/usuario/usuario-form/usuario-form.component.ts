@@ -17,7 +17,7 @@ export class UsuarioFormComponent implements OnInit {
   usuario: Usuario
   id: number
   success: boolean = false;
-  errors: string[];
+  errors: any[];
 
   // Roles pré cadastradas do sistema, será pego do environment
   rolesPadrao: string = environment.roles

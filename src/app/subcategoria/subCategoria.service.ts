@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { SubCategoria } from './subCategoria'
+import { SubCategoria } from './subCategoria';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +33,9 @@ export class SubCategoriaService {
 
   atualizar(subCategoria: SubCategoria): Observable<any> {
     return this.http.put<SubCategoria>(`${this.urlBaseSubCategoria}/${subCategoria.id}`, subCategoria);
+  }
+
+  getSubCategoriaPorIdCategoria(id: number) : Observable<SubCategoria[]> {
+    return this.http.get<SubCategoria[]>(`${this.urlBaseSubCategoria}/categoria/${id}`);
   }
 }

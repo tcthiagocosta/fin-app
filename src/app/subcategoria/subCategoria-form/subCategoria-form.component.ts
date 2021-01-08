@@ -3,10 +3,10 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/categoria/categoria';
 import { CategoriaService } from 'src/app/categoria/categoria.service';
-
-
-import { SubCategoria } from '../subCategoria'
+import { SubCategoria } from '../subCategoria';
 import { SubCategoriaService } from '../subCategoria.service';
+
+
 
 @Component({
   selector: 'app-subCategoria-form',
@@ -17,7 +17,7 @@ export class SubCategoriaFormComponent implements OnInit {
 
   subCategoria: SubCategoria
   success: boolean = false
-  errors: string[]
+  errors: any[]
   id: number
 
   categorias : Categoria[] = []

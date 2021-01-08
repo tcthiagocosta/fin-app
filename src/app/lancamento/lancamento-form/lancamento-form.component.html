@@ -1,0 +1,135 @@
+<h1 class="mt-4">Fatura Cartão</h1>
+<div class="container">
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">{{lancamento.id ? 'Alteração':'Novo Cadastro'}}</li>
+    </ol>
+    <form #lancamentoForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Salvo com sucesso!
+                </div>
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errors">
+                    {{erro.defaultMessage}}
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="lancamento.id">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>ID:</label>
+                    <input type="text" class="form-control" disabled=true [ngModel]="lancamento.id" name="id">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="form-group">
+                    <label>Descrição</label>                                        
+                    <input type="text" class="form-control" [(ngModel)]="lancamento.descricao" name="descricao" />
+                </div>            
+            </div>
+            <div class="col-md-4" >
+                <div class="form-group">
+                    <label>Data</label>                    
+                    <app-campo-data 
+                        [data]="lancamento.data" 
+                        [desabilita]="false" 
+                        (dataAlterada)="dataAlterada($event)">
+                    </app-campo-data>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Categoria: </label>
+                    <select class="form-control"
+                        [ngModelOptions]="{standalone: true}" 
+                        [(ngModel)]="idCategoriaSelecionara"
+                        (change)="selectCategoria($event)">
+                        <option value="">Selecione ...</option>
+                        <option *ngFor="let categoria of categorias" [ngValue]="categoria.id">
+                            {{ categoria.nome }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Sub Categoria: </label>
+                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="lancamento.subCategoria.id">
+                        <option value="">Selecione ...</option>
+                        <option *ngFor="let subCategoria of subCategorias" [ngValue]="subCategoria.id">
+                            {{ subCategoria.nome }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Tipo</label>
+                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="lancamento.tipo">
+                        <option value="">Selecione ...</option>
+                        <option *ngFor="let tipo of tipos" [ngValue]="tipo">
+                            {{ tipo }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Valor</label>
+                    <app-campo-valor 
+                        [(valor)]="lancamento.valor"
+                        (valorAlterado)="valorAlterado($event)"
+                    >
+                    </app-campo-valor>                    
+                </div>
+            </div>            
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Pago</label>
+                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="campoSelectPago">
+                        <option value="">Selecione ...</option>
+                        <option value="SIM">SIM</option>
+                        <option value="NAO">NAO</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Conta</label>
+                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="lancamento.conta.id">
+                        <option value="">Selecione ...</option>
+                        <option *ngFor="let conta of contas" [ngValue]="conta.id">
+                            {{ conta.nome }}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" *ngIf="!lancamento.id">
+                    <i class="fa fa-save"></i> Salvar
+                </button>
+                <button type="submit" class="btn btn-primary ml-1" *ngIf="lancamento.id">
+                    <i class="fa fa-sync-alt"></i> Atualizar Cadastro
+                </button>
+
+                <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+                    <i class="fa fa-arrow-alt-circle-left"></i> Voltar
+                </button>
+            </div>
+        </div>
+    </form>
+
+</div>

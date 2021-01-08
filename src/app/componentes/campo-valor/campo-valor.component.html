@@ -1,0 +1,10 @@
+<p-inputNumber 
+    [(ngModel)]="valor" 
+    inputId="valor" 
+    mode="decimal" 
+    [minFractionDigits]="2" 
+    [maxFractionDigits]="5"
+    [style]="{'width':'100%'}"
+    (ngModelChange)="alterarValor()"
+>
+</p-inputNumber>

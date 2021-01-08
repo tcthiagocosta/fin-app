@@ -4,16 +4,16 @@
 
 export const environment = {
   production: false,
-  apiURLBase: 'http://192.168.1.3:8080',
-  apiURLClientes: 'http://192.168.1.3:8080/api/clientes',
-  apiURLServicos: 'http://192.168.1.3:8080/api/servicos-prestados',
-  apiURLUsuarios: 'http://192.168.1.3:8080/api/usuarios',
-  apiURLUsuariosListaUsername: 'http://192.168.1.3:8080/api/usuarios/listarUsuarios',
-  apiURLUsuariosListaRoles: 'http://192.168.1.3:8080/api/usuarios/listarRolesUsuario',
-  apiURLUsuariosAlteraRoles: 'http://192.168.1.3:8080/api/usuarios/alteraRolesUsuario',
+  apiURLBase: 'http://localhost:8080',
+  apiURLClientes: 'http://localhost:8080/api/clientes',
+  apiURLServicos: 'http://localhost:8080/api/servicos-prestados',
+  apiURLUsuarios: 'http://localhost:8080/api/usuarios',
+  apiURLUsuariosListaUsername: 'http://localhost:8080/api/usuarios/listarUsuarios',
+  apiURLUsuariosListaRoles: 'http://localhost:8080/api/usuarios/listarRolesUsuario',
+  apiURLUsuariosAlteraRoles: 'http://localhost:8080/api/usuarios/alteraRolesUsuario',
   clientId: 'my-angular-app',
   clientSecret: '@321',
-  apiURLToken: 'http://192.168.1.3:8080/oauth/token',
+  apiURLToken: 'http://localhost:8080/oauth/token',
   roles: 'ADMIN,SERVICO,CLIENTE,VENDEDOR'
 };
 

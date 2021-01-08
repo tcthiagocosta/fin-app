@@ -80,6 +80,17 @@
                     Fatura Cartão
                 </a>
 
+                <a class="nav-link collapsed" 
+                   routerLink="/lancamento/form" 
+                   data-toggle="collapse"
+                   data-target="#collapseLayouts" 
+                   aria-expanded="false" 
+                   aria-controls="collapseLayouts"
+                   *ngIf="isMenuVisivel('conta')">
+                    <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                    Lançamento
+                </a>
+
                 
 
                 <div class="sb-sidenav-menu-heading">Minha Conta</div>

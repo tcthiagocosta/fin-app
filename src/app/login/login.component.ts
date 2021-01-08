@@ -12,7 +12,7 @@ export class LoginComponent {
   login: string;
   password: string;   
   mensagemSucesso: string;
-  errors: String[];
+  errors: any[];
 
   constructor(
     private router: Router,

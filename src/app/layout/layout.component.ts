@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 
-import jQuery from 'jquery';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-layout',
@@ -12,7 +12,7 @@ export class LayoutComponent implements AfterViewInit {
   constructor() { }
 
   ngAfterViewInit() {
-    (function ($) {
+    $(document).ready(function(){
       "use strict";
 
       // Add active state to sidbar nav links
@@ -28,7 +28,7 @@ export class LayoutComponent implements AfterViewInit {
         e.preventDefault();
         $("body").toggleClass("sb-sidenav-toggled");
       });
-    })(jQuery);
+    })
   }
 
 }

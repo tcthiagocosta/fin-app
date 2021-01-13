@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { SubCategoriaModule } from './subCategoria/subCategoria.module';
 import { TemplateModule } from './template/template.module';
+import { TransferenciaModule } from './transferencia/transferencia.module';
 import { AuthService } from './usuario/auth/auth.service';
 import { TokenInterceptor } from './usuario/auth/token.interceptor';
 import { UsuarioModule } from './usuario/usuario.module';
@@ -46,7 +47,8 @@ import { UsuarioService } from './usuario/usuario.service';
     FaturaCartaoModule,
     ComponentesModule,
     NgbModule,
-    LancamentoModule
+    LancamentoModule,
+    TransferenciaModule
   ],
   providers: [
     AuthService,

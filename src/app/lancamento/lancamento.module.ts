@@ -14,7 +14,6 @@ import { LancamentoRoutingModule } from './lancamento-routing.module';
     CommonModule,
     LancamentoRoutingModule,
     FormsModule,
-    ComponentesModule,
     ComponentesModule
   ],
   exports: [

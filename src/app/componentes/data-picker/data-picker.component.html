@@ -1,0 +1,9 @@
+<dp-date-picker  
+    theme="dp-material" 
+    [(ngModel)]="data" 
+    mode='daytime' 
+    [config]='config'
+    (ngModelChange)="alterarValor()"
+    [placeholder]="placeholder" 
+    #datePicker> 
+  </dp-date-picker>

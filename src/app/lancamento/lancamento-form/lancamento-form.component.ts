@@ -7,8 +7,8 @@ import { Conta } from 'src/app/conta/conta';
 import { ContaService } from 'src/app/conta/conta.service';
 import { SubCategoria } from 'src/app/subCategoria/subCategoria';
 import { SubCategoriaService } from 'src/app/subCategoria/subCategoria.service';
-import { Lancamento } from '../lancamento';
 import { LancamentoService } from '../lancamento.service';
+import { LancamentoDTO } from '../lancamentoDTO';
 
 @Component({
   selector: 'app-lancamento-form',
@@ -17,7 +17,7 @@ import { LancamentoService } from '../lancamento.service';
 })
 export class LancamentoFormComponent implements OnInit {
 
-  lancamento: Lancamento
+  lancamento: LancamentoDTO
   success: boolean = false
   errors: any[]
   id: number
@@ -36,8 +36,7 @@ export class LancamentoFormComponent implements OnInit {
     private subCategoriaService: SubCategoriaService,
     private contaService: ContaService
   ) { 
-    this.lancamento = new Lancamento();
-    this.lancamento.faturaCartao = null;
+    this.lancamento = new LancamentoDTO();
   }
 
   ngOnInit(): void {
@@ -56,8 +55,14 @@ export class LancamentoFormComponent implements OnInit {
           this.service
             .getLancamentoId(this.id)
             .subscribe(
-              response => this.lancamento = response,
-              errorResponse => this.lancamento = new Lancamento()
+              response => {
+                console.log(response);
+                
+                this.lancamento = response;
+                this.idCategoriaSelecionara = this.lancamento.categoria.id;
+                this.buscarSubCategorias();
+              },
+              errorResponse => this.lancamento = new LancamentoDTO()
             )
         }
       }
@@ -69,7 +74,6 @@ export class LancamentoFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.lancamento.pago = this.campoSelectPago === 'SIM' ? true : false;
     console.log(this.lancamento);
     
     if (this.id) {
@@ -102,6 +106,11 @@ export class LancamentoFormComponent implements OnInit {
       return;
     }
 
+    this.buscarSubCategorias()
+    
+  }
+
+  buscarSubCategorias() {
     this.subCategoriaService
     .getSubCategoriaPorIdCategoria(this.idCategoriaSelecionara)
     .subscribe(response => {

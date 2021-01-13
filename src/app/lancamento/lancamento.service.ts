@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Lancamento } from './lancamento';
+import { LancamentoDTO } from './lancamentoDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class LancamentoService {
     private http: HttpClient   
   ) { }
 
-  salvar(lancamento: Lancamento): Observable<any> {    
+  salvar(lancamento: LancamentoDTO): Observable<any> {    
     return this.http.post<any>(this.urlBaseLancamento, lancamento);    
   }
  
@@ -27,11 +28,11 @@ export class LancamentoService {
     return this.http.get<Lancamento[]>(this.urlBaseLancamento);
   }
 
-  getLancamentoId(id: number) : Observable<Lancamento> {
-    return this.http.get<Lancamento>(`${this.urlBaseLancamento}/${id}`);
+  getLancamentoId(id: number) : Observable<LancamentoDTO> {
+    return this.http.get<LancamentoDTO>(`${this.urlBaseLancamento}/${id}`);
   }
 
-  atualizar(lancamento: Lancamento): Observable<any> {
-    return this.http.put<Lancamento>(`${this.urlBaseLancamento}/${lancamento.id}`, lancamento);
+  atualizar(lancamento: LancamentoDTO): Observable<any> {
+    return this.http.put<LancamentoDTO>(`${this.urlBaseLancamento}/${lancamento.id}`, lancamento);
   }
 }

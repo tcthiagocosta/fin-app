@@ -81,7 +81,7 @@
                 </a>
 
                 <a class="nav-link collapsed" 
-                   routerLink="/lancamento/form" 
+                   routerLink="/lancamento" 
                    data-toggle="collapse"
                    data-target="#collapseLayouts" 
                    aria-expanded="false" 
@@ -89,6 +89,17 @@
                    *ngIf="isMenuVisivel('conta')">
                     <div class="sb-nav-link-icon"><i class="fas fa-file-invoice-dollar"></i></div>
                     Lançamento
+                </a>
+
+                <a class="nav-link collapsed" 
+                   routerLink="/transferencia" 
+                   data-toggle="collapse"
+                   data-target="#collapseLayouts" 
+                   aria-expanded="false" 
+                   aria-controls="collapseLayouts"
+                   *ngIf="isMenuVisivel('conta')">
+                    <div class="sb-nav-link-icon"><i class="fas fa-exchange-alt"></i></div>
+                    Transferência
                 </a>
 
                 

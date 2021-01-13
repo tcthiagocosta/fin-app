@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-4" >
                 <div class="form-group">
-                    <label>Data</label>                    
+                    <label>Data do lançamento</label>                    
                     <app-campo-data 
                         [data]="lancamento.data" 
                         [desabilita]="false" 
@@ -71,7 +71,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label>Tipo</label>
                     <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="lancamento.tipo">
@@ -81,7 +81,7 @@
                     </select>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="form-group">
                     <label>Valor</label>
                     <app-campo-valor 
@@ -90,21 +90,9 @@
                     >
                     </app-campo-valor>                    
                 </div>
-            </div>            
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label>Pago</label>
-                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="campoSelectPago">
-                        <option value="">Selecione ...</option>
-                        <option value="SIM">SIM</option>
-                        <option value="NAO">NAO</option>
-                    </select>
-                </div>
             </div>
-            <div class="col-md-6">
+            
+            <div class="col-md-4">
                 <div class="form-group">
                     <label>Conta</label>
                     <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="lancamento.conta.id">
@@ -114,6 +102,30 @@
                     </select>
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Pago</label>
+                    <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="lancamento.pago">
+                        <option value="">Selecione ...</option>
+                        <option value="SIM">SIM</option>
+                        <option value="NAO">NAO</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-md-6" *ngIf="lancamento.dataPagamento">
+                <div class="form-group">
+                    <label>Data do pagamento</label>                    
+                    <app-campo-data 
+                        [data]="lancamento.dataPagamento" 
+                        [desabilita]="true">
+                    </app-campo-data>
+                </div>
+            </div>
+            
         </div>
 
         <div class="row mt-3">

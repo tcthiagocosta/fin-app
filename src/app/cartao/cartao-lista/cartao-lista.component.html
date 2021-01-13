@@ -59,7 +59,7 @@
                     <h4>Confirmação</h4>
                 </div>
                 <div class="modal-body" *ngIf="cartaoSelecionado">
-                   Confirma deleção do cartao: {{ cartaoSelecionado.login }} ?
+                   Confirma deleção do cartao: {{ cartaoSelecionado.nome }} ?
                 </div>
                 <div class="modal-footer">
                     <button class="btn-success" data-dismiss="modal" (click)="deletarCartao()">Confirmar</button>

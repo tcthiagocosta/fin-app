@@ -1,4 +1,4 @@
-<h1 class="mt-4">Lançamento</h1>
+<h1 class="mt-4">Transferência </h1>
 <div class="container">
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Consulta</li>
@@ -30,27 +30,23 @@
                     <tr>
                         <th>ID</th>
                         <th>Data</th>
-                        <th>Conta</th>
                         <th>Descrição</th>
-                        <th>Tipo</th>
                         <th>Valor</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let lancamento of lancamentos">
-                        <td>{{ lancamento.id }}</td>
-                        <td>{{ lancamento.data }}</td>
-                        <td>{{ lancamento.conta.nome }}</td>
-                        <td>{{ lancamento.descricao }}</td>
-                        <td>{{ lancamento.tipo }}</td>
-                        <td>{{ lancamento.valor | currency : 'R$' }}</td>
+                    <tr *ngFor="let transferencia of transferencias">
+                        <td>{{ transferencia.id }}</td>
+                        <td>{{ transferencia.data }}</td>
+                        <td>{{ transferencia.descricao }}</td>
+                        <td>{{ transferencia.valor | currency : 'R$' }}</td>
                         <td>
-                            <button class="btn btn-primary" routerLink="/lancamento/form/{{ lancamento.id }}">
+                            <button class="btn btn-primary" routerLink="/transferencia/form/{{ transferencia.id }}">
                                 <i class="fa fa-edit"></i>
                             </button>
 
-                            <button class="btn btn-danger ml-1" (click)="preparaDelecao(lancamento)"  data-toggle="modal" data-target="#modalDelecao">
+                            <button class="btn btn-danger ml-1" (click)="preparaDelecao(transferencia)"  data-toggle="modal" data-target="#modalDelecao">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </td>
@@ -66,11 +62,11 @@
                 <div class="modal-header">
                     <h4>Confirmação</h4>
                 </div>
-                <div class="modal-body" *ngIf="lancamentoSelecionado">
-                   Confirma deleção do lancamento: {{ lancamentoSelecionado.descricao }} ?
+                <div class="modal-body" *ngIf="transferenciaSelecionado">
+                   Confirma deleção da transferência: {{ transferenciaSelecionado.descricao }} ?
                 </div>
                 <div class="modal-footer">
-                    <button class="btn-success" data-dismiss="modal" (click)="deletarCartao()">Confirmar</button>
+                    <button class="btn-success" data-dismiss="modal" (click)="deletarTransferencia()">Confirmar</button>
                     <button class="btn-danger" data-dismiss="modal">Cancelar</button>
                 </div>
             </div>

@@ -38,8 +38,17 @@ export class LancamentoListaComponent implements OnInit {
       .subscribe(response => {
         this.mensagemSucesso = `Lançamento deletado com Sucesso!`
         this.ngOnInit();
-      },
-        erro => this.mensagemErro = 'Erro ao deletar Lançamento')
+      },(erro => {
+        let erroApi = erro.error.message;
+
+        if (erroApi) {
+          this.mensagemErro = erroApi;
+        } else {
+          this.mensagemErro = 'Erro ao deletar Lançamento';
+        }
+        
+        
+      }))
   }
 
 }

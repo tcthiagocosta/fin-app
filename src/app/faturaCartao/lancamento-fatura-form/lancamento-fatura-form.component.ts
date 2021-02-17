@@ -1,49 +1,50 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Cartao } from 'src/app/cartao/cartao';
+import { CartaoService } from 'src/app/cartao/cartao.service';
 import { Categoria } from 'src/app/categoria/categoria';
 import { CategoriaService } from 'src/app/categoria/categoria.service';
-import { Conta } from 'src/app/conta/conta';
-import { ContaService } from 'src/app/conta/conta.service';
 import { SubCategoria } from 'src/app/subCategoria/subCategoria';
 import { SubCategoriaService } from 'src/app/subCategoria/subCategoria.service';
-import { LancamentoService } from '../lancamento.service';
-import { LancamentoDTO } from '../lancamentoDTO';
+import { FaturaCartaoService } from '../faturaCartao.service';
+import { LancamentoFaturaService } from '../lancamento-fatura.service';
+import { LancamentoFatura } from '../lancamentoFatura';
 
 @Component({
-  selector: 'app-lancamento-form',
-  templateUrl: './lancamento-form.component.html',
-  styleUrls: ['./lancamento-form.component.css']
+  selector: 'app-lancamento-fatura-form',
+  templateUrl: './lancamento-fatura-form.component.html',
+  styleUrls: ['./lancamento-fatura-form.component.css']
 })
-export class LancamentoFormComponent implements OnInit {
+export class LancamentoFaturaFormComponent implements OnInit {
 
-  lancamento: LancamentoDTO
-  success: boolean = false
-  errors: any[]
-  id: number
-  categorias : Categoria[] = []
-  idCategoriaSelecionada: number
-  subCategorias : SubCategoria[] = []
-  contas: Conta[] = []
-  tipos: string[] = ['RECEITA', 'DESPESA']
-  campoSelectPago: string
+  lancamento: LancamentoFatura
+  success: boolean = false;
+  errors: any[];
+  id: number;
+  categorias: Categoria[] = [];
+  idCategoriaSelecionada: number;
+  subCategorias: SubCategoria[] = [];
+  cartaoSelecionado: Cartao;
+  cartoes : Cartao[] = []
 
   constructor(
-    private service: LancamentoService,
     private router: Router,
+    private faturaCartaoService: FaturaCartaoService,
     private activatedRoute: ActivatedRoute,
+    private service: LancamentoFaturaService,
     private categoriaService: CategoriaService,
     private subCategoriaService: SubCategoriaService,
-    private contaService: ContaService
-  ) { 
-    this.lancamento = new LancamentoDTO();
+    private cartaoService: CartaoService
+  ) {
+    this.lancamento = new LancamentoFatura();
   }
 
   ngOnInit(): void {
 
     // carregando listas
     this.categoriaService.listartodos().subscribe(response => this.categorias = response);
-    this.contaService.listartodos().subscribe(response => this.contas = response);
+    this.cartaoService.listartodos().subscribe(response => this.cartoes = response);
 
     // verifica se foi passado no link o id de um usuario para editar
     let params: Observable<Params> = this.activatedRoute.params;
@@ -53,49 +54,37 @@ export class LancamentoFormComponent implements OnInit {
         this.id = urlParams['id']
         if (this.id) {
           this.service
-            .getLancamentoId(this.id)
+            .getLancamentoFaturaId(this.id)
             .subscribe(
               response => {
-                console.log(response);
-                
                 this.lancamento = response;
-                this.idCategoriaSelecionada = this.lancamento.categoria.id;
-                this.buscarSubCategorias();
               },
-              errorResponse => this.lancamento = new LancamentoDTO()
+              errorResponse => this.lancamento = new LancamentoFatura()
             )
         }
       }
     )
   }
 
-  voltarParaListagem() {
-    this.router.navigate(['/lancamento/lista']);
-  }
-
   onSubmit() {
-    if (this.id) {
-      this.service.atualizar(this.lancamento)
-        .subscribe(response => {
-          this.success = true;
-          this.errors = null;
-        },
-          errorResponse => {
-            this.success = false;
-            this.errors = ['Erro ao atualizar']
-          });
-    } else {
-      this.service.salvar(this.lancamento)
+    console.log(this.lancamento);
+    
+      this.service.salvar(this.lancamento, this.cartaoSelecionado)
         .subscribe(response => {
           this.success = true;
           this.errors = null;
           this.lancamento = response;
         },
           errorResponse => {
+            console.log('errorResponse', errorResponse)
             this.success = false;
             this.errors = errorResponse.error.errors;
           });
-    }
+ 
+  }
+
+  voltarParaListagem() {
+    this.router.navigate(['/faturaCartao/lista']);
   }
 
   selectCategoria(evento) {
@@ -117,11 +106,14 @@ export class LancamentoFormComponent implements OnInit {
   }
 
   dataAlterada(evento) {
+    console.log('chegou');
+    
     this.lancamento.data = evento.novaData;
   }
 
   valorAlterado(evento) {
     this.lancamento.valor = evento.novoValor;
   }
+
 
 }

@@ -1,4 +1,4 @@
-<h1 class="mt-4">FaturaCartao</h1>
+<h1 class="mt-4">Fatura Cartao</h1>
 <div class="container">
     <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item active">Consulta</li>
@@ -18,7 +18,12 @@
     <div class="row">
         <div class="col-md-2">
             <button class="btn btn-warning" (click)="novoCadastro()">
-                <i class="fa fa-plus"></i> Novo
+                <i class="fa fa-plus"></i> Nova Fatura
+            </button>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-warning" (click)="novoLancamento()">
+                <i class="fa fa-plus"></i> Novo Lançamento
             </button>
         </div>
     </div>
@@ -63,7 +68,7 @@
                     <h4>Confirmação</h4>
                 </div>
                 <div class="modal-body" *ngIf="faturaCartaoSelecionado">
-                   Confirma deleção do faturaCartao: {{ faturaCartaoSelecionado.login }} ?
+                   Confirma deleção do faturaCartao: {{ faturaCartaoSelecionado.id }} ?
                 </div>
                 <div class="modal-footer">
                     <button class="btn-success" data-dismiss="modal" (click)="deletarFaturaCartao()">Confirmar</button>

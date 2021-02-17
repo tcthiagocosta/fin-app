@@ -1,16 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { FaturaCartaoRoutingModule } from './faturaCartao-routing.module';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ComponentesModule } from '../componentes/componentes.module';
 import { FaturaCartaoFormComponent } from './faturaCartao-form/faturaCartao-form.component';
 import { FaturaCartaoListaComponent } from './faturaCartao-lista/faturaCartao-lista.component';
-import { FormsModule } from '@angular/forms';
+import { FaturaCartaoRoutingModule } from './faturaCartao-routing.module';
+import { LancamentoFaturaFormComponent } from './lancamento-fatura-form/lancamento-fatura-form.component';
 
-import {ComponentesModule} from '../componentes/componentes.module'
+
 
 
 @NgModule({
-  declarations: [FaturaCartaoFormComponent, FaturaCartaoListaComponent],
+  declarations: [FaturaCartaoFormComponent, FaturaCartaoListaComponent, LancamentoFaturaFormComponent],
   imports: [
     CommonModule,
     FaturaCartaoRoutingModule,
@@ -19,7 +20,8 @@ import {ComponentesModule} from '../componentes/componentes.module'
   ],
   exports: [
     FaturaCartaoFormComponent,
-    FaturaCartaoListaComponent
+    FaturaCartaoListaComponent,
+    LancamentoFaturaFormComponent
   ]
 })
 export class FaturaCartaoModule { }

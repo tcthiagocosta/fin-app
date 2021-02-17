@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, Injectable } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 
 @Component({
@@ -15,13 +15,7 @@ export class CampoDataComponent implements OnInit {
 
   constructor() { }
 
-  alterarValor() {
-    this.dataAlterada.emit({novaData: this.data})
-  }
-
-
   ngOnInit(): void {
-
     this.pt = {
       firstDayOfWeek: 1,
       dayNames: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
@@ -31,7 +25,10 @@ export class CampoDataComponent implements OnInit {
       monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
       today: 'Hoje',
       clear: 'Limpar'
-  }
+    }
   }
 
+  alterarValor() {
+    this.dataAlterada.emit({novaData: this.data})
+  }
 }

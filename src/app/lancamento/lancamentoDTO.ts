@@ -22,7 +22,7 @@ export class LancamentoDTO {
     tipo: string
     valor: number
     data: string
-    pago: string
+    pago: boolean
     dataPagamento: string
 
 }

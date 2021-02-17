@@ -29,6 +29,10 @@ export class FaturaCartaoListaComponent implements OnInit {
     this.router.navigate(['/faturaCartao/form']);
   }
 
+  novoLancamento() {
+    this.router.navigate(['/faturaCartao/lancamento']);
+  }
+
   preparaDelecao(faturaCartao: FaturaCartao) {
     this.faturaCartaoSelecionado = faturaCartao;
   }
